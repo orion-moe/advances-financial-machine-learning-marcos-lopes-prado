@@ -1,0 +1,31 @@
+
+## Considerações Finais
+
+Essa estrutura modular facilita a manutenção e a expansão do projeto. Cada componente está isolado em seu respectivo módulo, permitindo que você trabalhe em partes específicas sem interferir no restante do sistema. Além disso, facilita o reuso de código e a colaboração em equipe.
+
+**Notas Adicionais:**
+
+1. **Importações Relativas:** Certifique-se de usar importações relativas ou absolutas corretamente em cada módulo. Por exemplo, dentro de `main.py`, você pode importar módulos assim:
+    ```python
+    from data.data_loader import connect_clickhouse, get_tick_bars_in_chunks
+    from data.preprocessing import triple_barrier_method, fractional_difference, process_batch
+    from models.neural_net import NeuralNet
+    from training.train import prepare_dataloaders, train_model
+    from ensembling.ensembling import ensemble_predictions, train_and_collect_models
+    from reporting.report import generate_pdf_report
+    from utils.checkpoint import save_fold_checkpoint, load_fold_checkpoint, save_ensemble_models, load_ensemble_models, save_data_processing_checkpoint
+    from utils.logger import setup_logging
+    from config.config import DEVICE, CHECKPOINT_DATA_PATH, FOLD_CHECKPOINT_PATH, ENSEMBLE_CHECKPOINT_PATH, OPTUNA_STORAGE, OPTUNA_STUDY_NAME, FEATURES
+    from torch.cuda import amp
+    ```
+
+2. **Gerenciamento de Dependências:** Mantenha o `requirements.txt` atualizado com todas as bibliotecas necessárias. Você pode gerar este arquivo automaticamente a partir do seu ambiente virtual usando:
+    ```bash
+    pip freeze > requirements.txt
+    ```
+
+3. **Versionamento de Checkpoints:** Para facilitar a retomada do treinamento, implemente versionamento adequado para os checkpoints e garanta que os arquivos não sejam sobrescritos inadvertidamente.
+
+4. **Tratamento de Exceções:** Assegure-se de que todas as funções críticas possuem tratamento adequado de exceções para evitar falhas inesperadas durante a execução.
+
+5. **Documentação:** Adicione docstrings e comentários explicativos em cada função e classe para melhorar a legibilidade e a compreensão do código.

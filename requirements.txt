@@ -1,0 +1,14 @@
+clickhouse-driver
+numpy
+pandas
+matplotlib
+scipy
+tqdm
+torch
+joblib
+shap
+optuna
+reportlab
+numba
+safetensors
+scikit-learn
